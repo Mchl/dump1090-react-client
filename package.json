@@ -1,0 +1,19 @@
+{
+  "name": "dump1090-react-client",
+  "version": "0.9.0",
+  "description": "A replacement of dump1090's web client using React, WebSockets and more",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michał Jarosz",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.14.3"
+  },
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  }
+}
