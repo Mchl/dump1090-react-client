@@ -3,6 +3,7 @@
 let React = require('react');
 
 module.exports = React.createClass({
+    displayName: 'FlightTableRow',
     render: function () {
         return (
             <tr>
