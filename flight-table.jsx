@@ -4,9 +4,15 @@ let React = require('react');
 let FlightTableRow = require('./flight-table-row');
 
 module.exports = React.createClass({
+    displayName: 'FlightTable',
+    getInitialState: function () {
+        return {
+            data: []
+        };
+    },
     render: function () {
-        let rows = this.props.data.map((flightData) => {
-            return <FlightTableRow data={flightData} />
+        let rows = this.state.data.map((flightData) => {
+            return <FlightTableRow data={flightData} key={flightData.icao} />
         });
 
         return (
@@ -25,7 +31,7 @@ module.exports = React.createClass({
                     </tr>
                 </thead>
                 <tbody>
-                    {rows}
+                     {rows}
                 </tbody>
             </table>
         );
