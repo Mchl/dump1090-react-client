@@ -4,12 +4,15 @@
   "description": "A replacement of dump1090's web client using React, WebSockets and more",
   "main": "main.js",
   "scripts": {
+    "start": "npm run dev",
+    "dev": "webpack-dev-server --progress --colors --port 8090",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Michał Jarosz",
   "license": "MIT",
   "dependencies": {
-    "react": "^0.14.3"
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
   },
   "devDependencies": {
     "jsx-loader": "^0.13.2",
