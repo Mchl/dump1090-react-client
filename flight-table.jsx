@@ -23,11 +23,12 @@ module.exports = React.createClass({
                         <th>Flight</th>
                         <th>Squawk</th>
                         <th>Altitude</th>
+                        <th>Vertical rate</th>
                         <th>Speed</th>
-                        <th>Distance</th>
+                        <th>Position</th>
                         <th>Track</th>
                         <th>Msgs</th>
-                        <th>Age</th>
+                        <th>Last message</th>
                     </tr>
                 </thead>
                 <tbody>
