@@ -1,5 +1,7 @@
 'use strict';
 
+let dateFormat = require('dateformat');
+
 let React = require('react');
 
 module.exports = React.createClass({
@@ -7,13 +9,7 @@ module.exports = React.createClass({
     render: function () {
         let dateGenerated = '';
         if (this.props.data.dateGenerated !== undefined) {
-            dateGenerated =  this.props.data.dateGenerated.getFullYear() + '-' +
-                             (this.props.data.dateGenerated.getMonth() + 1) + '-' +
-                             this.props.data.dateGenerated.getDate() + ' ' +
-                             this.props.data.dateGenerated.getHours() + ':' + 
-                             this.props.data.dateGenerated.getMinutes() + ':' + 
-                             this.props.data.dateGenerated.getSeconds() + '.' + 
-                             this.props.data.dateGenerated.getMilliseconds(); 
+            dateGenerated = dateFormat(this.props.data.dateGenerated, 'yyyy-mm-dd HH:MM:ss.l');
         }
         return (
             <tr>
