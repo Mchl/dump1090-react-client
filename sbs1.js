@@ -117,7 +117,7 @@ let parseSbs1Message = function () {
 	  if (v === undefined || v === null) {
 		return v;
 	  } else {
-		return v !== '0';
+		return parseInt(v,10) !== 0;
 	  }
 	}
 	
