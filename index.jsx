@@ -16,7 +16,8 @@ let translateMessage = message => {
         verticalRate: message.vertical_rate,
         distance: '',
         track: message.track,
-        dateGenerated: new Date(Date.parse(message.generated_date + " " + message.generated_time + " UTC"))
+        dateGenerated: new Date(Date.parse(message.generated_date + " " + message.generated_time + " UTC")),
+        isOnGround: message.is_on_ground
     }
 };
 
@@ -54,6 +55,9 @@ let updatePlane = (plane, message) => {
     }
     if (message.lon !== null) {
         plane.lon = message.lon;
+    }
+    if (message.isOnGround !== null) {
+        plane.isOnGround = message.isOnGround;
     }
     plane.dateGenerated = message.dateGenerated;
     plane.msgs++;

@@ -25,7 +25,7 @@ module.exports = React.createClass({
                         <th>Altitude</th>
                         <th>Vertical rate</th>
                         <th>Speed</th>
-                        <th>Position</th>
+                        <th colSpan="2">Position</th>
                         <th>Track</th>
                         <th>Msgs</th>
                         <th>Last message</th>
