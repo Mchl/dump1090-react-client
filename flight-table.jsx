@@ -5,15 +5,14 @@ let FlightTableRow = require('./flight-table-row');
 
 module.exports = React.createClass({
     displayName: 'FlightTable',
-    getInitialState: function () {
-        return {
-            data: []
-        };
-    },
     render: function () {
-        let rows = this.state.data.map((flightData) => {
-            return <FlightTableRow data={flightData} key={flightData.icao} />
-        });
+        let rows = [];
+
+        if (this.props.planes !== undefined) {
+            rows = Object.keys(this.props.planes).map(icao => {
+                return <FlightTableRow data={this.props.planes[icao]} key={icao} />
+            });
+        }
 
         return (
             <table>

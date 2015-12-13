@@ -21,10 +21,14 @@ let translateMessage = message => {
     }
 };
 
-let planes = {};
+let state = {
+    planes: {}
+};
 
-if (localStorage.getItem('planes') !== null) {
-    planes = JSON.parse(localStorage.getItem('planes'));
+if (localStorage.getItem('state') !== null) {
+    state = JSON.parse(localStorage.getItem('state'));
+    let planes = state.planes;
+
     Object.keys(planes).forEach(plane => {
         planes[plane].dateGenerated = new Date(planes[plane].dateGenerated);
     })
@@ -64,6 +68,7 @@ let updatePlane = (plane, message) => {
 };
 
 let updatePlanes = message => {
+    let planes = state.planes;
     if (planes[message.icao] === undefined) {
         planes[message.icao] = {
             icao: message.icao,
@@ -73,12 +78,13 @@ let updatePlanes = message => {
 
     updatePlane(planes[message.icao], message);
 
-    localStorage.setItem('planes',JSON.stringify(planes));
+    localStorage.setItem('state',JSON.stringify(state));
 
 };
 
 webSocket.onmessage = evt => {
     let reader = new FileReader();
+    let planes = state.planes;
 
     reader.onloadend = () => {
         let messages = reader.result.split('\n');
@@ -90,22 +96,7 @@ webSocket.onmessage = evt => {
             }
         );
 
-        let data = [];
-        
-        Object.keys(planes).forEach(function (key) {
-            data.push(planes[key]);
-        });
-        data.sort(function (a,b) {
-            if(a.icao > b.icao) {
-                return 1;
-            }
-            if(a.icao < b.icao) {
-                return -1;
-            }
-            return 0;
-        });
-            
-        flightTableComponent.setState({data: data});
+        mainComponent.setState(state);
     };
     
 
@@ -114,11 +105,11 @@ webSocket.onmessage = evt => {
 
 let ReactDOM = require('react-dom');
 let React = require('react');
-let FlightTable = require('./flight-table');
+let Main = require('./main');
 
 
-let flightTableComponent = ReactDOM.render(
-    <FlightTable />, 
+let mainComponent = ReactDOM.render(
+    <Main />,
     document.getElementById('content')
 );
 
