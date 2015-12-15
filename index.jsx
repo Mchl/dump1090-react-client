@@ -22,17 +22,18 @@ let translateMessage = message => {
 };
 
 let state = {
+    planesTable: {},
     planes: {}
 };
 
-if (localStorage.getItem('state') !== null) {
-    state = JSON.parse(localStorage.getItem('state'));
-    let planes = state.planes;
-
-    Object.keys(planes).forEach(plane => {
-        planes[plane].dateGenerated = new Date(planes[plane].dateGenerated);
-    })
-}
+//if (localStorage.getItem('state') !== null) {
+//    state = JSON.parse(localStorage.getItem('state'));
+//    let planes = state.planes;
+//
+//    Object.keys(planes).forEach(plane => {
+//        planes[plane].dateGenerated = new Date(planes[plane].dateGenerated);
+//    })
+//}
 
 let updatePlane = (plane, message) => {
     if (message.flight !== null) {
@@ -78,7 +79,7 @@ let updatePlanes = message => {
 
     updatePlane(planes[message.icao], message);
 
-    localStorage.setItem('state',JSON.stringify(state));
+    //localStorage.setItem('state',JSON.stringify(state));
 
 };
 
@@ -98,7 +99,7 @@ webSocket.onmessage = evt => {
 
         mainComponent.setState(state);
     };
-    
+
 
     reader.readAsText(evt.data);
 }
@@ -107,9 +108,22 @@ let ReactDOM = require('react-dom');
 let React = require('react');
 let Main = require('./main');
 
+let onTableHeaderClick = function (event) {
+    console.log('setting sort column to ' + event.target.className);
+    if (event.target.className !== state.planesTable.sortColumn) {
+        state.planesTable.sortOrder = 1;
+    } else {
+        state.planesTable.sortOrder = -state.planesTable.sortOrder;
+    }
+    state.planesTable.sortColumn = event.target.className;
+
+    mainComponent.setState(state);
+};
 
 let mainComponent = ReactDOM.render(
-    <Main />,
+    <Main
+        onTableHeaderClick={onTableHeaderClick}
+    />,
     document.getElementById('content')
 );
 
