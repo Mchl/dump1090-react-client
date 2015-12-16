@@ -1,3 +1,38 @@
+#map1 {
+    height: 720px;
+    width: 720px;
+    display: inline-block;
+}
+
 td.numeric {
     text-align: right;
+}
+
+.flight-table {
+    font-size: 0.7em;
+    display: inline-block;
+}
+
+.flight-table td {
+    padding: 5px;
+}
+
+.flight-table th.icao {
+    width: 52px;
+}
+
+.flight-table th.flight {
+    width: 56px;
+}
+
+.flight-table th.squawk {
+    width: 44px;
+}
+
+.flight-table th.altitude {
+    width: 62px;
+}
+
+.flight-table th.vertical-rate {
+    width: 56px;
 }

@@ -1,8 +1,6 @@
 'use strict'
 
-let wsUrl = 'ws://192.168.0.12:8888';
-
-let webSocket = new WebSocket(wsUrl, ['binary', 'base64']);
+let webSocket = new WebSocket(SBS1_WEBSOCKET_URL, ['binary', 'base64']);
 
 let translateMessage = message => {
     return {
@@ -109,7 +107,6 @@ let React = require('react');
 let Main = require('./main');
 
 let onTableHeaderClick = function (event) {
-    console.log('setting sort column to ' + event.target.className);
     if (event.target.className !== state.planesTable.sortColumn) {
         state.planesTable.sortOrder = 1;
     } else {

@@ -13,12 +13,10 @@ module.exports = React.createClass({
             rows = Object.keys(this.props.planes).sort(this.columnSort).map(icao => {
                 return <FlightTableRow data={this.props.planes[icao]} key={icao} />
             });
-
-            rows.forEach(row => console.log(row.key));
         }
 
         return (
-            <table>
+            <table className="flight-table">
                 <thead>
                     <tr>
                         <th className="icao" onClick={this.props.onHeaderClick}>ICAO</th>
