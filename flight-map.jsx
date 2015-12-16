@@ -1,13 +1,18 @@
 'use strict';
 
-let Leaflet = require('react-leaflet');
+let RLeaflet = require('react-leaflet');
+let Leaflet = require('leaflet');
 let React = require('react');
 
 module.exports = React.createClass({
     displayName: 'FlightMap',
-    fao: function () {'nooosssp'},
+    ssssfao: function () {'noosssosssp'},
     render: function () {
         let markers = [];
+        let iconOptions = {
+            iconUrl: 'airplane.svg',
+            iconSize: [32, 32]
+        }
 
         if (this.props.planes !== undefined) {
             markers = Object.keys(this.props.planes)
@@ -19,25 +24,25 @@ module.exports = React.createClass({
                 let data = this.props.planes[icao];
                 let position = [data.lat, data.lon];
 
-                return (<Leaflet.Marker position={position} key={icao} iconAngle="90">
-                    <Leaflet.Popup>
+                return (<RLeaflet.Marker position={position} key={icao} icon={Leaflet.icon(iconOptions)}>
+                    <RLeaflet.Popup>
                         <span>
                             <h1>{icao}</h1>
                             Latitude: {data.lat}<br/>
                             Longitude: {data.lon}
                         </span>
-                    </Leaflet.Popup>
-                </Leaflet.Marker>);
+                    </RLeaflet.Popup>
+                </RLeaflet.Marker>);
             });
         }
 
 
-        return (<Leaflet.Map center={this.props.centre} zoom={this.props.zoom}>
-            <Leaflet.TileLayer
+        return (<RLeaflet.Map center={this.props.centre} zoom={this.props.zoom}>
+            <RLeaflet.TileLayer
                 url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
             {markers}
-        </Leaflet.Map>);
+        </RLeaflet.Map>);
     }
 });

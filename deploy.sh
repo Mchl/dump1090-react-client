@@ -6,7 +6,8 @@ cp ./node_modules/react/dist/react-with-addons.js ./dist/react-with-addons.js
 cp ./sbs1.js ./dist/sbs1.js
 cp ./node_modules/normalize.css/normalize.css ./dist/normalize.css
 cp ./node_modules/leaflet/dist/leaflet.css ./dist/leaflet.css
-cp ./style.css ./dist/style.css
+cp ./*.css ./dist/
+cp ./*.svg ./dist/
 sed 's/node_modules\/react\/dist\///' <index.html | \
   sed 's/node_modules\/normalize.css\///' | \
   sed 's/node_modules\/leaflet\/dist\///' | \
